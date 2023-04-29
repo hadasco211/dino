@@ -33,7 +33,7 @@ public class Player extends Thread{
     }
 
     public void paint(Graphics graphics){
-        ImageIcon imageIcon = new ImageIcon("src/picture/50.jpg");
+        ImageIcon imageIcon = new ImageIcon("C:\\Users\\USER001\\Downloads\\dog.gif");
         imageIcon.paintIcon(this.scene,graphics,this.x,this.y);
     }
 }
