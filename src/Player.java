@@ -19,20 +19,15 @@ public class Player extends Thread{
       public void run(){
         while (true){
             if (this.jump) {
-                this.jump();
+                this.y = Utils.PLAYER_JUMP;
                 Utils.sleep(500);
-                this.land();
-                this.jump=false;
+                this.y = Utils.Y_PLAYER;
+                this.jump = false;
             }
+
         }
     }
-    public void jump(){
-            this.y = Utils.PLAYER_JUMP;
 
-    }
-    public void land(){
-        this.y=Utils.Y_PLAYER;
-    }
     public void setJump(boolean value){
         this.jump=value;
     }
