@@ -18,14 +18,14 @@ public class Cactus extends Thread {
     }
     public void run () {
         while (true) {
-            this.x += this.speed;
+            this.x -= this.speed;
             Utils.sleep(100);
         }
     }
     public void paint (Graphics graphics) {
         ImageIcon imageIcon = new ImageIcon("src/picture/Imagem-de-Cacto-PNG.png");
         imageIcon.paintIcon(this.scene, graphics, this.x, this.y);
-//        this.width = imageIcon.getIconWidth();
+        this.width = imageIcon.getIconWidth();
     }
     public int getFrontLocation () {
         return this.x + this.width;
