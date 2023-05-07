@@ -15,9 +15,8 @@ public class Movement implements KeyListener {
     }
 
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             this.player.setJump(true);
-            this.scene.repaint();
         }
     }
 

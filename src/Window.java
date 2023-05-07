@@ -7,7 +7,7 @@ public class Window extends JFrame {
         this.setSize(Utils.WIDTH,Utils.HEIGHT);
         this.setLayout(null);
         this.add(new Scene(Utils.X_WINDOW,Utils.Y_WINDOW,Utils.WIDTH,Utils.HEIGHT));
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);

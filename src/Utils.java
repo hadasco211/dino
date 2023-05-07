@@ -5,8 +5,8 @@ public class Utils {
     public static final int Y_WINDOW = 0;
     public static final int WIDTH = 1750;
     public static final int HEIGHT = 950;
-    public static final int X_PLAYER = 10;
-    public static final int Y_PLAYER = 300;
+    public static final int X_PLAYER = 5;
+    public static final int Y_PLAYER = 250;
     public static final int PLAYER_JUMP = 300;
 
     public static final int X_CACTUS = 1300;

@@ -4,7 +4,7 @@ import java.awt.*;
 public class Cactus extends Thread {
     private int x;
     private int y;
-    private int speed=5;
+    private int speed;
     private Scene scene;
     private int width;
     private int locationCactus;
@@ -23,6 +23,7 @@ public class Cactus extends Thread {
             this.x -= this.speed;
             Utils.sleep(100);
 
+
         }
     }
     public void paint (Graphics graphics) {
@@ -30,7 +31,10 @@ public class Cactus extends Thread {
         imageIcon.paintIcon(this.scene, graphics, this.x, this.y);
         this.width = imageIcon.getIconWidth();
     }
-    public int getFrontLocation () {
-        return this.x + this.width;
+    public int[] getFrontLocation () {
+        int[] location = new int[2];
+        location[0] = this.x;
+        location[1] = this.y;
+        return location;
     }
 }
