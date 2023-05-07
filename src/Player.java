@@ -10,15 +10,20 @@ public class Player extends Thread{
     private int y;
     private Scene scene;
     private boolean jump;
+    private int width;
+    private int height;
 
     public Player(Scene scene){
         this.x = Utils.X_PLAYER;
         this.y = Utils.Y_PLAYER;
         this.scene = scene;
         this.jump = false;
+        this.width = 150;
+        this.height = 300;
     }
 
-      public void run(){
+//
+    public void run(){
         while (true){
             if (this.jump) {
                 this.y = Utils.PLAYER_JUMP;
@@ -26,18 +31,26 @@ public class Player extends Thread{
                 this.y = Utils.Y_PLAYER;
                 this.jump = false;
             }
+
             Utils.sleep(10);
         }
     }
-//    public void jump()  {
-//        this.y -= (250);//TODO
-//        Utils.sleep(1000);
-//        this.y = Utils.Y_PLAYER;
-//
-//    }
+
 
     public int getY() {
         return y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getX() {
+        return x;
     }
 
     public void setJump(boolean value){
@@ -50,7 +63,7 @@ public class Player extends Thread{
 
 
     public void paint(Graphics graphics){
-        ImageIcon imageIcon = new ImageIcon("src/picture/dog-min (1).gif");
+        ImageIcon imageIcon = new ImageIcon("src/picture/IMG_6988 (1).GIF");
         imageIcon.paintIcon(this.scene,graphics,this.x,this.y);
 //        graphics.fillRect(this.x,this.y,60,120);
 //        graphics.setColor(Color.red);

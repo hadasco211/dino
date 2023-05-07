@@ -7,15 +7,15 @@ public class Cactus extends Thread {
     private int speed;
     private Scene scene;
     private int width;
-    private int locationCactus;
+    private int height;
 
-    public Cactus(Scene scene){
+    public Cactus(Scene scene, int speed){
         this.x= Utils.X_CACTUS;
         this.y= Utils.Y_CACTUS;
-        this.speed = Utils.SPEED;
+        this.speed = speed;
         this.scene = scene;
-        this.locationCactus= this.x+this.width;
-
+        this.width = 150;
+        this.height = 200;
 
     }
     public void run () {
@@ -26,8 +26,25 @@ public class Cactus extends Thread {
 
         }
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getHeight(){
+        return this.height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
     public void paint (Graphics graphics) {
-        ImageIcon imageIcon = new ImageIcon("src/picture/Imagem-de-Cacto250-PNG.png");
+        ImageIcon imageIcon = new ImageIcon("src/picture/Imagem-de-Cacto100-PNG.png");
         imageIcon.paintIcon(this.scene, graphics, this.x, this.y);
         this.width = imageIcon.getIconWidth();
     }
