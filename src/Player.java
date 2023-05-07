@@ -26,7 +26,7 @@ public class Player extends Thread{
                 this.y = Utils.Y_PLAYER;
                 this.jump = false;
             }
-
+            Utils.sleep(10);
         }
     }
 //    public void jump()  {

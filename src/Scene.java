@@ -18,6 +18,7 @@ public class Scene extends JPanel{
         this.setLayout(null);
         this.setBackground(Color.DARK_GRAY);
         this.player = new Player(this);
+        this.player.start();
         this.cactuses = new ArrayList<>();
         Cactus cactus1 = new Cactus(this);
         Cactus cactus2 = new Cactus(this);
