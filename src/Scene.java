@@ -15,6 +15,7 @@ public class Scene extends JPanel {
     private boolean isGameOver;
     private boolean isStartPressed;
     private int speed;
+    private GameTimer gameTimer;
 
 
     public Scene(int x, int y, int width, int height) {
@@ -24,12 +25,11 @@ public class Scene extends JPanel {
         this.isStartPressed = false;
         this.setFocusable(true);
         this.requestFocus();
+        this.gameTimer = new GameTimer();
         JButton instructions = new JButton("Game Instructions");
         instructions.setBounds(x + Utils.X_START, y + Utils.Y_INSTRUCTION_BUTTON, Utils.START_WIDTH, Utils.START_HEIGHT);
         instructions.setFont(new Font("Game Instructions", Font.BOLD, 20));
         this.add(instructions);
-
-
         instructions.addActionListener(e -> {
             try {
                 showMessage(this.GameInstructions());
@@ -41,8 +41,10 @@ public class Scene extends JPanel {
         start.setBounds(x + instructions.getX(), y + Utils.Y_START, Utils.START_WIDTH, Utils.START_HEIGHT);
         start.setFont(new Font("Start", Font.BOLD, 20));
         this.add(start);
-        this.start.addActionListener(e -> {
+        start.addActionListener(e -> {
             try {
+                this.gameTimer.start();
+                this.gameTimer.startTimer();
                 this.remove(start);
                 this.remove(instructions);
                 this.isStartPressed = true;
@@ -50,7 +52,7 @@ public class Scene extends JPanel {
                 this.player.start();
                 this.addKeyListener(new Movement(this.player, this));
                 this.cactuses = new ArrayList<>();
-                this.speed = 20;
+                this.speed = Utils.SPEED;
 
                 new Thread(() -> {
                     while (true) {
@@ -64,20 +66,20 @@ public class Scene extends JPanel {
                 }).start();
 
                 this.isGameOver = false;
-                new Thread(() -> {
-                    while (true) {
-                        this.repaint();
-                        Utils.sleep(20);
-                        for (Cactus cactus : this.cactuses) {
-                            if (this.checkCollision(cactus, this.player)) {
-                                this.isStartPressed = false;
-                                break;
-                            }
-                        }
-                    }
-                }).start();
-
-
+                this.mainGameLoop();
+//                new Thread(() -> {
+//                    while (true) {
+//                        this.repaint();
+//                        Utils.sleep(20);
+//                        for (Cactus cactus : this.cactuses) {
+////                            if (this.checkCollision(cactus, this.player)) {
+//                            if(Utils.collision(this.player.creatRect(),cactus.creatRect())){
+//                                this.isStartPressed = false;
+//                                break;
+//                            }
+//                        }
+//                    }
+//                }).start();
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
@@ -88,16 +90,33 @@ public class Scene extends JPanel {
     }
 
 
-    public boolean checkCollision(Cactus cactus, Player player) {
-        boolean result = false;
-        if (player.getX() < cactus.getX() + cactus.getWidth() &&
-                player.getX() + player.getWidth() > cactus.getX() &&
-                player.getY() < cactus.getY() + cactus.getHeight() &&
-                player.getY() + player.getHeight() > cactus.getY()) {
-            System.out.println("Game over");
-            result = true;
-        }
-        return result;
+
+//    public boolean checkCollision(Cactus cactus, Player player) {
+//        boolean result = false;
+//        if (player.getX() < cactus.getX() + cactus.getWidth() &&
+//                player.getX() + player.getWidth() > cactus.getX() &&
+//                player.getY() < cactus.getY() + cactus.getHeight() &&
+//                player.getY() + player.getHeight() > cactus.getY()) {
+//            result = true;
+//        }
+//        return result;
+//    }
+
+    public void mainGameLoop(){
+        new Thread(() -> {
+            while (true) {
+                this.repaint();
+                Utils.sleep(20);
+
+                for (Cactus cactus : this.cactuses) {
+//                            if (this.checkCollision(cactus, this.player)) {
+                    if(Utils.collision(this.player.creatRect(),cactus.creatRect())){
+                        this.isStartPressed = false;
+                        break;
+                    }
+                }
+            }
+        }).start();
     }
 
     public void showMessage(String message) {
@@ -111,7 +130,6 @@ public class Scene extends JPanel {
                 "Press the spacebar to jump over the obstacles (like cacti) in your way.\n " +
                 "The longer you last, the faster the obstacles will enter the game,\n thus increasing the level of difficulty.\n" +
                 "If you collide with one of the cacti, the game will end and you can go back to play again.\n" +
-                //   "by pressing the enter key.\n" +
                 "Successfully!!!";
 
         return instructions;
@@ -119,7 +137,7 @@ public class Scene extends JPanel {
 
 
     public void paintBackground(Graphics graphics) {
-        ImageIcon imageIcon = new ImageIcon("C:\\Users\\הדסי\\Documents\\Dino Game\\170%.jpg");
+        ImageIcon imageIcon = new ImageIcon("src/picture/170%.jpg");
         imageIcon.paintIcon(this, graphics, 0, 0);
     }
 

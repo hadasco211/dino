@@ -18,8 +18,8 @@ public class Player extends Thread{
         this.y = Utils.Y_PLAYER;
         this.scene = scene;
         this.jump = false;
-        this.width = 150;
-        this.height = 300;
+        this.width = Utils.PLAYER_WIDTH;
+        this.height = Utils.PLAYER_HEIGHT;
     }
 
 //
@@ -37,21 +37,21 @@ public class Player extends Thread{
     }
 
 
-    public int getY() {
-        return y;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getX() {
-        return x;
-    }
+//    public int getY() {
+//        return y;
+//    }
+//
+//    public int getWidth() {
+//        return width;
+//    }
+//
+//    public int getHeight() {
+//        return height;
+//    }
+//
+//    public int getX() {
+//        return x;
+//    }
 
     public void setJump(boolean value){
         this.jump=value;
@@ -59,6 +59,11 @@ public class Player extends Thread{
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public Rectangle creatRect(){
+        Rectangle rectangle = new Rectangle(this.x,this.y,this.width,this.height);
+        return rectangle;
     }
 
 
@@ -69,11 +74,11 @@ public class Player extends Thread{
 //        graphics.setColor(Color.red);
     }
 
-    public int[] getFrontLocation () {
-        int[] location = new int[2];
-        location[0] = this.x;
-        location[1] = this.y;
-        return location;
-    }
+//    public int[] getFrontLocation () {
+//        int[] location = new int[2];
+//        location[0] = this.x;
+//        location[1] = this.y;
+//        return location;
+//    }
 
 }
