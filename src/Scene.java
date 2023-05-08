@@ -26,47 +26,30 @@ public class Scene extends JPanel {
         this.setFocusable(true);
         this.requestFocus();
         this.gameTimer = new GameTimer();
-        JButton instructions = new JButton("Game Instructions");
-        instructions.setBounds(x + Utils.X_START, y + Utils.Y_INSTRUCTION_BUTTON, Utils.START_WIDTH, Utils.START_HEIGHT);
-        instructions.setFont(new Font("Game Instructions", Font.BOLD, 20));
-        this.add(instructions);
-        instructions.addActionListener(e -> {
-            try {
-                showMessage(this.GameInstructions());
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
+        this.setBackground(Color.RED);
+
+        this.gameTimer.start();
+        this.gameTimer.startTimer();
+        this.isStartPressed = true;
+        this.player = new Player(this);
+        this.player.start();
+        this.addKeyListener(new Movement(this.player));
+        this.cactuses = new ArrayList<>();
+        this.speed = Utils.SPEED;
+
+        new Thread(() -> {
+            while (true) {
+                Random random = new Random();
+                Cactus cactus = new Cactus(this, speed);
+                Utils.sleep(random.nextInt(2500, 4500));
+                cactus.start();
+                this.speed += 2;
+                this.cactuses.add(cactus);
             }
-        });
-        JButton start = new JButton("Start");
-        start.setBounds(x + instructions.getX(), y + Utils.Y_START, Utils.START_WIDTH, Utils.START_HEIGHT);
-        start.setFont(new Font("Start", Font.BOLD, 20));
-        this.add(start);
-        start.addActionListener(e -> {
-            try {
-                this.gameTimer.start();
-                this.gameTimer.startTimer();
-                this.remove(start);
-                this.remove(instructions);
-                this.isStartPressed = true;
-                this.player = new Player(this);
-                this.player.start();
-                this.addKeyListener(new Movement(this.player, this));
-                this.cactuses = new ArrayList<>();
-                this.speed = Utils.SPEED;
+        }).start();
 
-                new Thread(() -> {
-                    while (true) {
-                        Random random = new Random();
-                        Cactus cactus = new Cactus(this, speed);
-                        Utils.sleep(random.nextInt(2500, 4500));
-                        cactus.start();
-                        this.speed += 2;
-                        this.cactuses.add(cactus);
-                    }
-                }).start();
-
-                this.isGameOver = false;
-                this.mainGameLoop();
+        this.isGameOver = false;
+        this.mainGameLoop();
 //                new Thread(() -> {
 //                    while (true) {
 //                        this.repaint();
@@ -80,10 +63,6 @@ public class Scene extends JPanel {
 //                        }
 //                    }
 //                }).start();
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
-        });
 
 
 
@@ -119,21 +98,6 @@ public class Scene extends JPanel {
         }).start();
     }
 
-    public void showMessage(String message) {
-        JOptionPane.showMessageDialog(this, message, "Game Instructions", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    public String GameInstructions() {
-        String instructions;
-        instructions = "Welcome to the Dino game\n" +
-                "All you have to do is press the start button and the player will start running. \n" +
-                "Press the spacebar to jump over the obstacles (like cacti) in your way.\n " +
-                "The longer you last, the faster the obstacles will enter the game,\n thus increasing the level of difficulty.\n" +
-                "If you collide with one of the cacti, the game will end and you can go back to play again.\n" +
-                "Successfully!!!";
-
-        return instructions;
-    }
 
 
     public void paintBackground(Graphics graphics) {
@@ -143,15 +107,13 @@ public class Scene extends JPanel {
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        if (isStartPressed) {
-            paintBackground(graphics);
-            this.player.paint(graphics);
-            for (Cactus cactus : this.cactuses) {
-                cactus.paint(graphics);
-                this.repaint();
-            }
-
+        paintBackground(graphics);
+        this.player.paint(graphics);
+        for (Cactus cactus : this.cactuses) {
+            cactus.paint(graphics);
+            this.repaint();
         }
+
 //        else {
 //            this.instructions = new JButton("Game Instructions");
 //            instructions.setBounds(0 + Utils.X_START, 0 + Utils.Y_INSTRUCTION_BUTTON, Utils.START_WIDTH, Utils.START_HEIGHT);

@@ -3,11 +3,9 @@ import java.awt.event.KeyListener;
 
 public class Movement implements KeyListener {
     private Player player;
-    private Scene scene;
 
-    public Movement(Player player, Scene scene){
+    public Movement(Player player){
         this.player= player;
-        this.scene = scene;
     }
 
     public void keyTyped(KeyEvent e) {
