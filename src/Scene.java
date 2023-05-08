@@ -44,8 +44,8 @@ public class Scene extends JPanel {
 //        this.add(start);
         this.start.addActionListener(e -> {
             try {
-                this.remove(this.start);
-                this.remove(this.instructions);
+                this.remove(start);
+                this.remove(instructions);
                 this.isStartPressed = true;
                 this.player = new Player(this);
                 this.player.start();
@@ -120,7 +120,7 @@ public class Scene extends JPanel {
 
 
     public void paintBackground(Graphics graphics) {
-        ImageIcon imageIcon = new ImageIcon("src/picture/WhatsApp Image 2023-04-29 at 23.33.15.jpg");
+        ImageIcon imageIcon = new ImageIcon("C:\\Users\\הדסי\\Documents\\Dino Game\\170%.jpg");
         imageIcon.paintIcon(this, graphics, 0, 0);
     }
 
@@ -133,7 +133,9 @@ public class Scene extends JPanel {
                 cactus.paint(graphics);
                 this.repaint();
             }
-        } else {
+
+        }
+        else {
             this.instructions = new JButton("Game Instructions");
             instructions.setBounds(0 + Utils.X_START, 0 + Utils.Y_INSTRUCTION_BUTTON, Utils.START_WIDTH, Utils.START_HEIGHT);
             instructions.setFont(new Font("Game Instructions", Font.BOLD, 20));

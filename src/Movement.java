@@ -16,7 +16,7 @@ public class Movement implements KeyListener {
 
     public void keyPressed(KeyEvent e) {
         System.out.println("keyPressed");
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             System.out.println("JUMP");
             this.player.setJump(true);
         }

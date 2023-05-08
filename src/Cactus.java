@@ -44,7 +44,7 @@ public class Cactus extends Thread {
     }
 
     public void paint (Graphics graphics) {
-        ImageIcon imageIcon = new ImageIcon("src/picture/Imagem-de-Cacto100-PNG.png");
+        ImageIcon imageIcon = new ImageIcon("src/picture/Imagem-de-Cacto250-PNG.png");
         imageIcon.paintIcon(this.scene, graphics, this.x, this.y);
         this.width = imageIcon.getIconWidth();
     }
