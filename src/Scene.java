@@ -24,24 +24,23 @@ public class Scene extends JPanel {
         this.isStartPressed = false;
         this.setFocusable(true);
         this.requestFocus();
-//        JButton instructions = new JButton("Game Instructions");
-//        instructions.setBounds(x + Utils.X_START, y + Utils.Y_INSTRUCTION_BUTTON, Utils.START_WIDTH, Utils.START_HEIGHT);
-//        instructions.setFont(new Font("Game Instructions", Font.BOLD, 20));
-//        this.add(instructions);
-//        this.setFocusable(true);
-//        this.requestFocus();
-//
-//        instructions.addActionListener(e -> {
-//            try {
-//                showMessage(this.GameInstructions());
-//            } catch (Exception ex) {
-//                throw new RuntimeException(ex);
-//            }
-//        });
-//        JButton start = new JButton("Start");
-//        start.setBounds(x + instructions.getX(), y + Utils.Y_START, Utils.START_WIDTH, Utils.START_HEIGHT);
-//        start.setFont(new Font("Start", Font.BOLD, 20));
-//        this.add(start);
+        JButton instructions = new JButton("Game Instructions");
+        instructions.setBounds(x + Utils.X_START, y + Utils.Y_INSTRUCTION_BUTTON, Utils.START_WIDTH, Utils.START_HEIGHT);
+        instructions.setFont(new Font("Game Instructions", Font.BOLD, 20));
+        this.add(instructions);
+
+
+        instructions.addActionListener(e -> {
+            try {
+                showMessage(this.GameInstructions());
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        JButton start = new JButton("Start");
+        start.setBounds(x + instructions.getX(), y + Utils.Y_START, Utils.START_WIDTH, Utils.START_HEIGHT);
+        start.setFont(new Font("Start", Font.BOLD, 20));
+        this.add(start);
         this.start.addActionListener(e -> {
             try {
                 this.remove(start);
@@ -135,25 +134,25 @@ public class Scene extends JPanel {
             }
 
         }
-        else {
-            this.instructions = new JButton("Game Instructions");
-            instructions.setBounds(0 + Utils.X_START, 0 + Utils.Y_INSTRUCTION_BUTTON, Utils.START_WIDTH, Utils.START_HEIGHT);
-            instructions.setFont(new Font("Game Instructions", Font.BOLD, 20));
-            this.add(instructions);
-
-
-            instructions.addActionListener(e -> {
-                try {
-                    showMessage(this.GameInstructions());
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-            this.start = new JButton("Start");
-            start.setBounds(0 + instructions.getX(), 0 + Utils.Y_START, Utils.START_WIDTH, Utils.START_HEIGHT);
-            start.setFont(new Font("Start", Font.BOLD, 20));
-            this.add(start);
-
-        }
+//        else {
+//            this.instructions = new JButton("Game Instructions");
+//            instructions.setBounds(0 + Utils.X_START, 0 + Utils.Y_INSTRUCTION_BUTTON, Utils.START_WIDTH, Utils.START_HEIGHT);
+//            instructions.setFont(new Font("Game Instructions", Font.BOLD, 20));
+//            this.add(instructions);
+//
+//
+//            instructions.addActionListener(e -> {
+//                try {
+//                    showMessage(this.GameInstructions());
+//                } catch (Exception ex) {
+//                    throw new RuntimeException(ex);
+//                }
+//            });
+//            this.start = new JButton("Start");
+//            start.setBounds(0 + instructions.getX(), 0 + Utils.Y_START, Utils.START_WIDTH, Utils.START_HEIGHT);
+//            start.setFont(new Font("Start", Font.BOLD, 20));
+//            this.add(start);
+//
+//        }
     }
 }
