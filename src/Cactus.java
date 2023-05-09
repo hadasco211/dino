@@ -22,27 +22,16 @@ public class Cactus extends Thread {
         while (true) {
             this.x -= this.speed;
             Utils.sleep(100);
-
-
         }
     }
 
-//    public int getX() {
-//        return x;
-//    }
-//
-//    public int getY() {
-//        return y;
-//    }
-//
-//    public int getHeight(){
-//        return this.height;
-//    }
-//
-//    public int getWidth() {
-//        return width;
-//    }
 
+    public void rest()
+    {
+        this.x= Utils.X_CACTUS;
+        this.y= Utils.Y_CACTUS;
+        this.speed = Utils.SPEED;
+    }
     public void paint (Graphics graphics) {
         ImageIcon imageIcon = new ImageIcon("src/picture/200.png");
         imageIcon.paintIcon(this.scene, graphics, this.x, this.y);
@@ -53,10 +42,5 @@ public class Cactus extends Thread {
         Rectangle rectangle = new Rectangle(this.x,this.y,this.width,this.height);
         return rectangle;
     }
-//    public int[] getFrontLocation () {
-//        int[] location = new int[2];
-//        location[0] = this.x;
-//        location[1] = this.y;
-//        return location;
-//    }
+
 }

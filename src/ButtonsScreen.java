@@ -3,10 +3,13 @@ import java.awt.*;
 
 public class ButtonsScreen extends JPanel {
 
+    private boolean start;
+
     public ButtonsScreen(int x, int y, int width, int height, Window window) {
         this.setBounds(x, y, width, height);
         this.setLayout(null);
-        this.setBackground(Color.PINK);
+        this.setBackground(Color.RED);
+        this.start = false;
         JButton instructions = new JButton("Game Instructions");
         instructions.setBounds(x + Utils.X_START, y + Utils.Y_INSTRUCTION_BUTTON, Utils.START_WIDTH, Utils.START_HEIGHT);
         instructions.setFont(new Font("Game Instructions", Font.BOLD, 20));
@@ -14,6 +17,7 @@ public class ButtonsScreen extends JPanel {
         instructions.addActionListener(e -> {
             try {
                 showMessage(this.GameInstructions());
+                this.start = true;
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
@@ -25,12 +29,21 @@ public class ButtonsScreen extends JPanel {
         start.addActionListener(e -> {
             try {
                 window.switchScreen("scene");
+
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         });
 
     }
+
+//    public boolean startGame(){
+//        boolean isStartGame = false;
+//        if (this.start){
+//            isStartGame = true;
+//        }
+//        return isStartGame;
+//    }
 
 
     public void showMessage(String message) {

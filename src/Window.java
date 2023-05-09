@@ -12,7 +12,7 @@ public class Window extends JFrame {
         this.mainPanel = new JPanel();
         this.mainPanel.setLayout(this.cardLayout); // Set the layout of the mainPanel to cardLayout
         this.mainPanel.add(new ButtonsScreen(Utils.X_WINDOW, Utils.Y_WINDOW, Utils.WIDTH, Utils.HEIGHT, this), "ButtonsScreen");
-        this.mainPanel.add(new Scene(Utils.X_WINDOW, Utils.Y_WINDOW, Utils.WIDTH, Utils.HEIGHT), "scene");
+        this.mainPanel.add(new Scene(Utils.X_WINDOW, Utils.Y_WINDOW, Utils.WIDTH, Utils.HEIGHT, this), "scene");
         this.getContentPane().add(mainPanel, BorderLayout.CENTER); // Add the mainPanel to the content pane of the Window
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
